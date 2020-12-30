@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Cockpit.css'
 import styled from 'styled-components';
 
@@ -20,6 +20,17 @@ cursor : pointer;
 `
 
 const cockpit = (props) => {
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect ');
+        setTimeout(() =>{
+          //  alert('Saved data to cloud!')
+        },1000);
+
+        return () => {
+            console.log('[Cockpit.js] Cleaning Up Now!!')
+        }
+
+    },[])
 
     let classes = [];
     if(props.persons.length <= 2) classes.push('red')
@@ -28,7 +39,7 @@ const cockpit = (props) => {
 
     return (
         <div className="Cockpit">
-        <h1>Hi I'm a React App</h1>
+        <h1>{props.title}</h1>
         <p className={classes.join(' ')}> This is really working</p>
         <StyledButton onClick={props.toggled}> Toggle Display </StyledButton>
        </div>
